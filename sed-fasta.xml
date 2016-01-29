@@ -1,0 +1,15 @@
+<tool id="sed_fasta" name="Shorten fasta identifier" version="0.3">
+    <description>rremove leading characters in fasta downloaded from ncbi to match genbank locus tag</description>
+    <command>
+        cat $input1 | sed 's/gi.*gb[|]//g' | sed 's/[|]//g' >> $out_file1    </command>
+    <inputs>
+        <param name="input1" type="data" label="remove gi to gb characters" />
+    </inputs>
+    <outputs>
+        <data name="out_file1" format="input" metadata_source="input1"/>
+    </outputs>
+    <tests>
+    </tests>
+    <help>
+    </help>
+</tool>

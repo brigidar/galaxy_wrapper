@@ -1,0 +1,56 @@
+<tool id="Filter_snp_table" name="filter_snp_table" version="0.2">
+    <description>Filters out positions with multiple hits or no hits</description>
+    <requirements>
+       <!-- Should just use the filter snp that's installed in the path -->           
+       </requirements>
+
+## The command is a Cheetah template which allows some Python based syntax.
+## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
+## ! We only have a simple single command here.
+
+    <command >
+        2_sort.py
+        -s ${snp_table}
+        -o output_file.txt
+        -t total.txt;
+        cut -f1 output_file.txt > header.txt | cut -f2- output_file.txt > seq.txt;
+        cat seq.txt | sed 's/[[:blank:]]//g' >seq2.txt;
+        paste header.txt seq2.txt >tab.txt;
+        echo DONE!
+    </command>
+
+    <inputs>
+        <param format="txt" name="snp_table" type="data" label="Unfiltered snp table" help=""/>
+        
+    </inputs>
+
+    <outputs>
+        <data format="txt" name="tab_file" label="tab delimited SNPs" from_work_dir="tab.txt">
+            </data>
+        <data format="txt" name="total" label="filtered_snp_table.txt" from_work_dir="total.txt" >
+            </data>
+    </outputs>
+    
+    <tests>
+    <!-- Empty -->
+    </tests>
+
+    <help>
+        
+.. class:: infomark
+
+**What it does**
+
+Removes multiallelic positions within the same genome and positions with no hit.
+
+-------------
+
+.. class:: infomark
+
+**Tool Author**
+
+Brigida Rusconi
+
+
+    </help>
+</tool>

@@ -1,0 +1,53 @@
+<tool id="vcf_snp" name="vcf to snp" version="0.4">
+    <description>vcf to snp for fasta</description>
+    <requirements>
+       <!-- Should just use the filter snp that's installed in the path -->
+           
+       </requirements>
+
+## The command is a Cheetah template which allows some Python based syntax.
+## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
+## ! We only have a simple single command here.
+    <command interpreter="python">
+        vcf_snp.py
+        -s ${vcf}
+        -o output.txt;
+        echo ${vcf.name} > name.txt;
+        cut -f2 output.txt >seq.txt;
+        paste name.txt seq.txt> output2.txt
+        
+    </command>
+
+    <inputs>
+        <param  name="vcf" type="data" label="vcf" help=""/>
+        
+    </inputs>
+
+    <outputs>
+        <data format="tabular" name="output_file" label="${vcf}" from_work_dir="output2.txt">
+            </data>
+    </outputs>
+    
+    <tests>
+    <!-- Empty -->
+    </tests>
+
+    <help>
+        
+.. class:: infomark
+
+**What it does**
+
+Transforms a vcf into a snp tab file. Has to take the nucleotide from the reference column when identical.
+
+-------------
+
+.. class:: infomark
+
+**Tool Author**
+
+Brigida Rusconi
+
+
+    </help>
+</tool>

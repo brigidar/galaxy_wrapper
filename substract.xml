@@ -1,0 +1,41 @@
+<tool id="normalize" name="normalize value" version="0.1.1">
+    
+    <description>
+    </description>
+    
+    <requirements>
+    </requirements>
+    
+    <command interpreter="/usr/local/anaconda/bin/python">
+        substract.py -s ${input} -v ${number} -o output.bed
+    </command>
+    
+    <inputs>
+        <param name="input" type="data" label="file with positions from snp table"/>
+        <param name="number" type="integer" label="normalize value to" value="1"/>
+    </inputs>
+    
+    <outputs>
+        <data format="bed" name="output"  from_work_dir="output.bed" label="${input.name} (normalized bed)"/>
+    </outputs>
+    
+    <help>
+        
+        **What it does**
+        
+        
+        This tool normalizes snp table to bed format (base 0). Can also be used to substract any value starting from the second column.
+        
+    ----------
+    
+    
+    .. class:: infomark
+    
+    **Tool Author**
+    
+    Brigida Rusconi
+    
+        
+        
+    </help>
+</tool>
