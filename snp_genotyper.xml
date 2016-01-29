@@ -11,8 +11,8 @@
 
     <command>
         snp_genotyper.py
-        -s ${snp_table}
         -t ${number}
+        ${snp_table}
     </command>
 
     <inputs>
