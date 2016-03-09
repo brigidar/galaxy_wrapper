@@ -1,4 +1,4 @@
-<tool id="select strain" name="select strains in genotyper" version="0.2">
+<tool id="select strain" name="select strains in genotyper" version="0.3">
     <description>select strains in genoyper output</description>
     <requirements>
        <!--  genotyper output and names of strains-->
@@ -18,7 +18,7 @@
          <param name="genome" type="text" label="list of genomes"/>
     </inputs>
     <outputs>
-        <data format="txt" name="output_file" label="$selected_genotyper.txt" from_work_dir="output.txt">
+        <data format="txt" name="output_file" label="selected_genotyper.txt" from_work_dir="output.txt">
             </data>
         
     </outputs>
