@@ -1,5 +1,5 @@
 <tool id="Filter_snp_table" name="filter_snp_table" version="0.3">
-    <description>Filters out positions with multiple hits or no hits</description>
+    <description>Provides filtered table and fasta</description>
     <requirements>
        <!-- Should just use the filter snp that's installed in the path -->           
        </requirements>
@@ -18,7 +18,7 @@
     </inputs>
 
     <outputs>
-        <data format="fasta" name="multifasta" label="multifasta" from_work_dir="output_file.fasta">
+        <data format="fasta" name="output_file.fasta" label="multifasta" from_work_dir="output_file.fasta">
             </data>
         <data format="tabular" name="total" label="filtered_snp_table.txt" from_work_dir="total.txt" >
             </data>
