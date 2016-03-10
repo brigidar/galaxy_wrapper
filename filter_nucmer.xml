@@ -1,5 +1,5 @@
 <tool id="filter_nucmer" name="filter nucmer" version="0.1">
-    <description>filters blastn</description>
+    <description>filters nucmer</description>
     <requirements>
        <!-- Should just use the filter snp that's installed in the path -->
            

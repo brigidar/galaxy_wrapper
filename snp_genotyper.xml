@@ -1,4 +1,4 @@
-<tool id="genotyper" name="genotyper tool" version="0.1">
+<tool id="genotyper" name="genotyper tool" version="0.2">
     <description>generates genotypes from SNP table </description>
     <requirements>
        <!-- Should just use the filter snp that's installed in the path -->
@@ -9,7 +9,7 @@
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 ## ! We only have a simple single command here.
 
-    <command>
+    <command interpreter="python">
         snp_genotyper.py
         -t ${number}
         ${snp_table}
