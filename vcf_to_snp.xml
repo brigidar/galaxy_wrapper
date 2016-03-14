@@ -1,4 +1,4 @@
-<tool id="vcf_snp" name="vcf to snp" version="0.4">
+<tool id="vcf_snp" name="vcf to snp" version="0.6">
     <description>vcf to snp for fasta</description>
     <requirements>
        <!-- Should just use the filter snp that's installed in the path -->
@@ -8,9 +8,10 @@
 ## The command is a Cheetah template which allows some Python based syntax.
 ## Lines starting hash hash are comments. Galaxy will turn newlines into spaces
 ## ! We only have a simple single command here.
-    <command interpreter="python">
+    <command interpreter="/usr/local/anaconda/bin/python">
         vcf_snp.py
         -s ${vcf}
+        -p ${pos}
         -o output.txt;
         echo ${vcf.name} > name.txt;
         cut -f2 output.txt >seq.txt;
@@ -20,6 +21,7 @@
 
     <inputs>
         <param  name="vcf" type="data" label="vcf" help=""/>
+        <param  name="pos" type="data" label="positions" help=""/>
         
     </inputs>
 
