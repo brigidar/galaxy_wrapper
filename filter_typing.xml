@@ -8,7 +8,7 @@
 
 
     <command interpreter="python">
-        filter_blastn.py
+        filter_typing.py
         -s ${snp_table}
         -p ${positions}
         -o output.fasta
@@ -26,7 +26,7 @@
     <outputs>
         <data format="txt" name="output_table" label="${tool.name} on ${on_string}: typing" from_work_dir="typing.txt">
             </data>
-        <data format="fasta" name="output" label="${tool.name} on ${on_string}: blastn" from_work_dir="output.fasta">
+        <data format="fasta" name="output" label="${tool.name} on ${on_string}: fasta" from_work_dir="output.fasta">
         </data>
     </outputs>
     
