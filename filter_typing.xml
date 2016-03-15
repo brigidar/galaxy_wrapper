@@ -1,0 +1,55 @@
+<tool id="filter_typing" name="filter typing" version="0.1">
+    <description>filters typing SNPs from contig discovery</description>
+    <requirements>
+       <!-- Should just use the filter snp that's installed in the path -->
+           
+       </requirements>
+
+
+
+    <command interpreter="python">
+        filter_blastn.py
+        -s ${snp_table}
+        -p ${positions}
+        -o output.fasta
+       
+        
+    </command>
+
+    <inputs>
+        <param format="txt" name="snp_table" type="data" label="Unfiltered snp_table" help=""/>
+        <param format="txt" name="positions" type="data" label="Typing positions" help=""/>
+
+
+    </inputs>
+
+    <outputs>
+        <data format="txt" name="output_table" label="${tool.name} on ${on_string}: typing" from_work_dir="typing.txt">
+            </data>
+        <data format="fasta" name="output" label="${tool.name} on ${on_string}: blastn" from_work_dir="output.fasta">
+        </data>
+    </outputs>
+    
+    <tests>
+    <!-- Empty -->
+    </tests>
+
+    <help>
+        
+.. class:: infomark
+
+**What it does**
+
+Filters SNPs from assembled query genomes according to given typing positions and provides multifasta.
+
+-------------
+
+.. class:: infomark
+
+**Tool Author**
+
+Brigida Rusconi
+
+
+    </help>
+</tool>
