@@ -1,0 +1,33 @@
+<tool id="fastq_dump_Bioproject" name="Bioproject Fastq Dump" version="0.1">
+    <description>Downloads SRR files based on Bioproject nb</description>
+    <requirements>
+        <!-- Should just use the ncbi tools that's installed in the path -->
+        <requirement type="binary">esearch</requirement>
+        <requirement type="binary">efetch</requirement>
+        <requirement type="binary">fastq-dump</requirement>
+    </requirements>
+    <command>
+        esearch -db sra -query ${Bioproject} | efetch --format runinfo | cut -d ',' -f 1 | grep SRR | xargs fastq-dump --outdir ${Bioproject} --skip-technical --split-files --readids --dumpbase --clip --ncbi_error_report never --log-level fatal
+    </command>
+    <inputs>
+        <param name="Bioproject" size="10" type="text" value="" label="Bioproject"/>
+    </inputs>
+    <outputs>
+        <data format="fastq" name="report">
+            <discover_datasets pattern="__designation_and_ext__" ext="fastq" directory="${Bioproject}" visible="true" />
+            </data>
+    </outputs>
+    
+    <tests>
+        <!-- Empty -->
+    </tests>
+    
+    <help>
+        **What it does**
+        
+        Grabs all SRR linked to Bioproject number for Illumina paired reads
+        
+        
+        
+    </help>
+</tool>
