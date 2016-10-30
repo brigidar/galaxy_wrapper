@@ -1,7 +1,6 @@
-<tool id="mutator" name="mutator" version="0.1">
-    <description>mutates assembled genome>
-    <requirements>
-    </requirements>
+<tool id="mutator" name="mutator" version="0.2">
+    <description>mutates assembled genome></description>
+    <requirements></requirements>
     <command>
         mkdir ${input};
         cd ${input};
@@ -19,8 +18,8 @@
          
     </inputs>
     <outputs>
-        <data format="fasta" name="report">
-            <discover_datasets pattern="__designation_and_ext__" ext="fasta" directory="${input}" visible="true" />
+        <data format="txt" name="report">
+            <discover_datasets pattern="__designation__" ext="fasta" directory="${input}" visible="true" />
         </data>
     </outputs>
     
@@ -33,7 +32,7 @@
 
 Generates mutated genomes from reference genome. Wrapper for CFSAN mutator.
 https://snp-mutator.readthedocs.io/en/latest/index.html
-::
+
 
     </help>
 </tool>
