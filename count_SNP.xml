@@ -2,7 +2,7 @@
     <description>count SNP provided by each genome></description>
     <requirements></requirements>
     <command>
-        wc -l #for $q in $input_files# $q #end for#  > $output.txt;
+        wc -l #for $q in $input_files# $q #end for#  > $output
 
 
     </command>
@@ -10,7 +10,7 @@
          <param name="input_files" type="data" multiple="true" optional="false" format="txt" label="Input text files(s)" help="One or more SNP prediction files" />
     </inputs>
     <outputs>
-       <data label="count_SNP" format="txt" name="output.txt" metadata_source="input_files" >
+       <data format="txt" name="output" metadata_source="input_files" >
        
        </data>
     </outputs>
