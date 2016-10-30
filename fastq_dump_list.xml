@@ -1,4 +1,4 @@
-<tool id="fastq_dump_Bioproject" name="Bioproject Fastq Dump" version="0.1">
+<tool id="fastq_dump_Bioproject" name="Bioproject Fastq Dump" version="0.2">
     <description>Downloads SRR files based on Bioproject nb</description>
     <requirements>
         <!-- Should just use the ncbi tools that's installed in the path -->
@@ -7,20 +7,17 @@
         <requirement type="binary">fastq-dump</requirement>
     </requirements>
     <command>
-        esearch -db sra -query ${Bioproject} | efetch --format runinfo | cut -d ',' -f 1 | grep SRR | xargs fastq-dump --outdir ${Bioproject} --skip-technical --split-files --readids --dumpbase --clip --ncbi_error_report never --log-level fatal
+        esearch -db sra -query $Bioproject | efetch --format runinfo | cut -d ',' -f 1 | grep SRR | xargs fastq-dump --outdir $Bioproject --skip-technical --split-files --readids --dumpbase --clip --ncbi_error_report never --log-level fatal
     </command>
     <inputs>
-        <param name="Bioproject" size="10" type="text" value="" label="Bioproject"/>
+        <param name="$Bioproject" type="text" label="$Bioproject"/>
     </inputs>
     <outputs>
-        <data format="fastq" name="report">
-            <discover_datasets pattern="__designation_and_ext__" ext="fastq" directory="${Bioproject}" visible="true" />
-            </data>
+        <collection type="list" label="$Bioproject" name="output1">
+            <discover_datasets pattern="(?P&lt;name&gt;.*)" directory="$Bioproject" />
+            </collection>
     </outputs>
     
-    <tests>
-        <!-- Empty -->
-    </tests>
     
     <help>
         **What it does**
