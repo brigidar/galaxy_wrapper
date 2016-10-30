@@ -1,7 +1,6 @@
 <tool id="count_SNP" name="Count_SNP" version="0.1">
-    <description>count SNP provided by each genome>
-    <requirements>
-    </requirements>
+    <description>count SNP provided by each genome></description>
+    <requirements></requirements>
     <command>
         wc -l #for $q in $input_files# $q #end for#  > $output.txt;
 
