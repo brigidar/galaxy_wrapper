@@ -1,0 +1,42 @@
+<tool id="fastq_dump_Bioproject_paired" name="Bioproject Fastq Dump paired" version="0.4">
+    <description>Downloads SRR files based on Bioproject nb</description>
+    <requirements>
+        <!-- Should just use the ncbi tools that's installed in the path -->
+        <requirement type="binary">esearch</requirement>
+        <requirement type="binary">efetch</requirement>
+        <requirement type="binary">fastq-dump</requirement>
+    </requirements>
+    <command><![CDATA[
+        esearch -db sra -query $Bioproject | efetch --format runinfo | cut -d ',' -f 1 | grep SRR | xargs fastq-dump --skip-technical --split-files --readids --dumpbase --clip --ncbi_error_report never --log-level fatal &&
+        ## Galaxy wants forward and reverse in pattern not _1 and _2.
+        ##   There is bash magic that would be more concise then this basename
+        ##   pattern but I think this is more portable.
+        for f in *_1.fastq; do mv "\$f" "`basename \$f _1.fastq`_forward.fastq"; done &&
+        for f in *_2.fastq; do mv "\$f" "`basename \$f _2.fastq`_reverse.fastq"; done
+    ]]></command>
+
+    <inputs>
+        <param name="Bioproject" type="text" label="Bioproject number"/>
+    </inputs>
+    <outputs>
+        <collection name="list_output" type="list:paired" label="$Bioproject" >
+            <!-- Use named regex group to grab pattern
+             <identifier_0>_<identifier_1>.fq. Here identifier_0 is the list
+             identifier in the nested collection and identifier_1 is either
+             forward or reverse (for instance samp1_forward.fq).
+             -->
+
+            <discover_datasets pattern="(?P&lt;identifier_0&gt;[^_]+)_(?P&lt;identifier_1&gt;[^_]+)\.fastq" ext="fastqsanger" visible="true"/>
+        </collection>
+    </outputs>
+    
+    
+    <help>
+        **What it does**
+        
+        Grabs all SRR linked to Bioproject number for Illumina paired reads
+        
+        
+        
+    </help>
+</tool>
