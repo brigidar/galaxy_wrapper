@@ -1,38 +1,30 @@
-<tool id="mutator" name="mutator" version="0.2">
-    <description>mutates assembled genome></description>
-    <requirements></requirements>
+<tool id="mutator" name="mutator" version="0.3">
+    <description>mutates assembled genome</description>
     <command>
-        mkdir ${input};
-        cd ${input};
-        snpmutator.py -r ${random} -n ${number} -s ${substitutions} -i ${insertions} -d ${deletions} -o summary.tsv ${input}
-
-
-    </command>
+        /Users/brigidarusconi/github/snp-mutator/snpmutator/snpmutator.py -r $random -n $number -s $substitutions -i $insertions -d $deletions -o summary.tsv $genome;
+        rename -f 's/^dataset_[0-9]+/$genome.name/' *fasta
+        </command>
     <inputs>
-         <param name="${input}" type="data" format="fasta" label="genome" help="genome to mutate" />
-         <param name="${number}" type="integer" value="10" label="numbers of genomes generated" />
-         <param name="${substitutions}" type="integer" value="2" label="substitutions per round" />
-         <param name="${random}" type="integer" value="1" label="random seed"  />
-         <param name="${insertions}" type="integer" value="1" label="number insertions"  />
-         <param name="${deletions}" type="integer" value="0" label="number deletions"  />
-         
+        <param name="genome" type="data" label="genome" help="genome to mutate" format="fasta" />
+        <param name="number" type="integer" value="10" label="numbers of genomes generated" />
+        <param name="substitutions" type="integer" value="2" label="substitutions per round" />
+        <param name="random" type="integer" value="1" label="random seed"  />
+        <param name="insertions" type="integer" value="1" label="number insertions"  />
+        <param name="deletions" type="integer" value="0" label="number deletions"  />
     </inputs>
     <outputs>
-        <data format="txt" name="report">
-            <discover_datasets pattern="__designation__" ext="fasta" directory="${input}" visible="true" />
-        </data>
+        <collection name="list_output" type="list" label="$genome.name" >
+            <discover_datasets pattern="(?P&lt;designation&gt;.+)\.fasta" format="fasta" ext="fasta" visible="true" />
+        </collection>
     </outputs>
     
-    <tests>
-    <!-- Empty -->
-    </tests>
-
+    
     <help>
-**What it does**
-
-Generates mutated genomes from reference genome. Wrapper for CFSAN mutator.
-https://snp-mutator.readthedocs.io/en/latest/index.html
-
-
+        **What it does**
+        
+        Generates mutated genomes from reference genome. Wrapper for CFSAN mutator.
+        https://snp-mutator.readthedocs.io/en/latest/index.html
+        
+        
     </help>
 </tool>
