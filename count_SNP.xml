@@ -1,11 +1,11 @@
-<tool id="count_SNP" name="Count_SNP" version="0.1">
+<tool id="count_SNP" name="Count_SNP" version="0.2">
     <description>count SNP provided by each genome</description>
     <command>
 #for $input in $inputs#
 wc -l $input >> len.txt;
 echo '$input.element_identifier' >> names.txt;
 #end for#
-cut -f4 -d " " len.txt >length.txt;
+cut -f6 -d " " len.txt >length.txt;
 paste names.txt length.txt > output.txt;
     </command>
     <inputs>
