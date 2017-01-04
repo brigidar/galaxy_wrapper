@@ -10,7 +10,7 @@
     awk '{ printf "%s", $0; n = "\n" } END { printf "%s", n }' input.txt> output2.txt;
     echo ">fasta_seq" >> output.txt;
     cat  output2.txt >> output.txt;
-    bash /path/to/script/retrieve_phaster.sh;
+    bash retrieve_phaster.sh;
 
     </command>
 
