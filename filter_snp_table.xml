@@ -10,17 +10,20 @@
         -s ${snp_table}
         -o output_file.fasta
         -t total.txt
+        -r $remove
     </command>
 
     <inputs>
         <param format="txt" name="snp_table" type="data" label="Unfiltered snp table" help=""/>
+        <param name="remove" type="text" label="Write True if you want to remove non-canonical nucleotides" help=""/>
+
         
     </inputs>
 
     <outputs>
-        <data format="fasta" name="output_file.fasta" label="multifasta" from_work_dir="output_file.fasta">
+        <data format="fasta" name="output_file.fasta" label="${snp_table.name}_snp.fasta" from_work_dir="output_file.fasta">
             </data>
-        <data format="tabular" name="total" label="filtered_snp_table.txt" from_work_dir="total.txt" >
+        <data format="tabular" name="total" label="filtered_${snp_table.name}.txt" from_work_dir="total.txt" >
             </data>
     </outputs>
     
