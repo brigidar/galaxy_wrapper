@@ -1,0 +1,31 @@
+<tool id="read_SNPDV" name="read_SNPDV" version="0.1">
+    <description>SNP table of read predicted</description>
+
+    <command>
+        vcf_snp_output.py -g ${genbank} -t ${translation} -q #for $q in ${query_genomes} # $q #end for
+        
+    </command>
+    <inputs>
+        <param type="data" name="genbank" label="Reference Genbank"/>
+        <param type="integer" name="translation" label="Translation table number" value="11"/>
+        <param type="data" name="query_genomes" label="SNP list" multiple='true'/>
+    </inputs>
+    <outputs>
+       <data format="txt" from_work_dir="output.txt" label='${genbank.name}_snp_table.txt' >
+       
+       </data>
+    </outputs>
+    
+
+    <help>
+**What it does**
+
+Creates SNP table from read-based SNP discovery.
+
+::
+
+**Tool Author**
+
+Brigida Rusconi
+    </help>
+</tool>
