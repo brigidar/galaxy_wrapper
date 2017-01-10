@@ -1,22 +1,22 @@
-<tool id="read_SNPDV" name="read_SNPDV" version="0.1">
+<tool id="read_SNPDV" name="read_SNPDV" version="0.2">
     <description>SNP table of read predicted</description>
-
     <command>
-        vcf_snp_output.py -g ${genbank} -t ${translation} -q #for $q in ${query_genomes} # $q #end for
         
+    vcf_snp_output.py -g ${genbank} -t ${translation} -o $output -q #for $q in $query_genomes # $q #end for
     </command>
     <inputs>
         <param type="data" name="genbank" label="Reference Genbank"/>
         <param type="integer" name="translation" label="Translation table number" value="11"/>
-        <param type="data" name="query_genomes" label="SNP list" multiple='true'/>
+        <param type="data" name="query_genomes" label="SNP list" multiple="true"/>
     </inputs>
     <outputs>
-       <data format="txt" from_work_dir="output.txt" label='${genbank.name}_snp_table.txt' >
+       <data format="txt" name="output" label="${genbank.name}_snp_table"/>
        
-       </data>
     </outputs>
     
-
+    <stdio>
+        <regex match= "Biopython" source="stderr" level="warning" description="Just ignore this message that goes to stderr" />
+    </stdio>
     <help>
 **What it does**
 
