@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<tool_dependency>
+<package name="sra" version="2.5.2">
+<repository " name="package_sra_toolkit_2_5_2 " owner="iuc" prior_installation_required="False" toolshed="http://toolshed.g2.bx.psu.edu" />
+</package>
+</tool_dependency>
